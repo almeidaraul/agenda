@@ -3,25 +3,25 @@ from io import StringIO
 from agenda import agenda
 
 
-def test_check_cmd_with_no_required_keys_raises_no_error():
+def test_check_required_keys_with_no_required_keys_raises_no_error():
     cmd = {"key1": "val1", "key2": "val2"}
     required_keys = []
-    agenda.check_cmd(cmd, required_keys)
+    agenda.check_required_keys(cmd, required_keys)
 
 
-def test_check_cmd_with_missing_required_keys_raises_KeyError():
+def test_check_required_keys_with_missing_required_keys_raises_KeyError():
     cmd = {"key1": "val1", "key2": "val2"}
     required_keys = ["key3"]
     try:
-        agenda.check_cmd(cmd, required_keys)
+        agenda.check_required_keys(cmd, required_keys)
     except KeyError:
         assert True
 
 
-def test_check_cmd_with_no_missing_required_keys_raises_no_error():
+def test_check_required_keys_with_no_missing_required_keys_raises_no_error():
     cmd = {"key1": "val1", "key2": "val2"}
     required_keys = ["key1"]
-    agenda.check_cmd(cmd, required_keys)
+    agenda.check_required_keys(cmd, required_keys)
 
 
 def test_build_cmd_str_with_empty_cmd_prefix_raises_ValueError():
